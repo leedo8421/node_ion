@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File Upload History</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<style>
+    table, th, td {
+        border: 1px solid #bcbcbc;
+        text-align: center;
+    }
+    table {
+        width: 80%;
+        margin: auto;
+    }
+    th {
+        height: 60px;
+        font-size: large;
+    }
+    td {
+        height: 40px;
+    }
+    div {
+        font-size: large;
+    }
+</style>
+<body>
+<h1 align="center">File Upload History</h1>
+<hr style="border: solid 10px red;">
+<table>
+    <tr>
+        <th>Order</th>
+        <th>OriginalName</th>
+        <th>RefineName</th>
+        <th>Size</th>
+        <th>Format</th>
+    </tr>
+<%if(data.length>0){%>
+    <%var i = 0;%>
+    <%data.forEach(function(item){%>
+    <%i++;%>
+    <tr>
+        <td class="number"><%=i+((page-1)*10)%></td>
+        <td class="oName"><%=item.originName%></td>
+        <td class="rName"><%=item.refineName%></td>
+        <td class="oName"><%=item.size%></td>
+        <td class="oName"><%=item.format%></td>
+    </tr>
+    <%})%>
+<%} else {%>
+    <tr>
+        <td colspan="5">히스토리가 없습니다.</td>
+    </tr>
+<%}%>
+</table>
+<div align="center">
+    <div class="pagination">
+        <%
+        for(var i=1; i<=pagination; i++){
+        %>
+        <a href="/upload/list/<%=i%>" class="next-page"><%=i%></a>
+        <%}%>
+    </div>
+</div>
+<footer>
+</footer>
+</body>
+</html>
